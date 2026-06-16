@@ -44,4 +44,8 @@ impl GraphicsContext {
     pub fn destroy(self) {
         self.backend.destroy();
     }
+
+    pub fn invalidate_command_cache(&mut self) {
+        self.backend.invalidate_command_cache();
+    }
 }

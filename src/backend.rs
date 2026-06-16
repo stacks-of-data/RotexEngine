@@ -20,5 +20,7 @@ pub trait GpuBackend {
 
     fn read_texture(&mut self, id: TextureId) -> Result<TextureReadback, Error>;
 
+    fn invalidate_command_cache(&mut self) {}
+
     fn destroy(self: Box<Self>);
 }
