@@ -1,8 +1,8 @@
 use crate::backend::GpuBackend;
 use crate::error::Error;
 use rotex_types::{
-    CreatedResources, Extent2D, RenderCommand, ResourceBatchCreate, ResourceBatchUpdate,
-    SceneDescriptor, SurfaceDescriptor, TextureId, TextureReadback,
+    CreatedResources, Extent2D, ResourceBatchCreate, ResourceBatchUpdate, RhiCommand,
+    SurfaceDescriptor, TextureId, TextureReadback,
 };
 
 pub struct GraphicsContext {
@@ -29,12 +29,8 @@ impl GraphicsContext {
         self.backend.update_resources(descriptor)
     }
 
-    pub fn render(
-        &mut self,
-        scene_descriptor: &SceneDescriptor,
-        commands: &[RenderCommand],
-    ) -> Result<(), Error> {
-        self.backend.execute(scene_descriptor, commands)
+    pub fn render(&mut self, commands: &[RhiCommand]) -> Result<(), Error> {
+        self.backend.execute(commands)
     }
 
     pub fn resize(&mut self, extent: Extent2D) -> Result<(), Error> {

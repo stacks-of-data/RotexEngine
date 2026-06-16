@@ -9,10 +9,8 @@ repository = "https://github.com/rotexengine/rotex-core"
 [dependencies]
 thiserror = "2.0.18"
 raw-window-handle = "0.6.2"
-rotex-types = { version = "0.1.1" }
+rotex-types = { path = "../rotex-types", version = "0.1.1" }
 
-[build-dependencies]
-shaderc = "0.10.1"
 
 [dev-dependencies]
 rfd = "0.17.2"

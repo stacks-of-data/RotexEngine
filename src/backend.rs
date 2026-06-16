@@ -1,7 +1,7 @@
 use crate::error::Error;
 use rotex_types::{
-    CreatedResources, Extent2D, RenderCommand, ResourceBatchCreate, ResourceBatchUpdate,
-    SceneDescriptor, SurfaceDescriptor, TextureId, TextureReadback,
+    CreatedResources, Extent2D, ResourceBatchCreate, ResourceBatchUpdate, RhiCommand,
+    SurfaceDescriptor, TextureId, TextureReadback,
 };
 
 pub trait GpuBackend {
@@ -14,8 +14,7 @@ pub trait GpuBackend {
 
     fn update_resources(&mut self, descriptor: ResourceBatchUpdate) -> Result<(), Error>;
 
-    fn execute(&mut self, scene: &SceneDescriptor, commands: &[RenderCommand])
-    -> Result<(), Error>;
+    fn execute(&mut self, commands: &[RhiCommand]) -> Result<(), Error>;
 
     fn resize(&mut self, extent: Extent2D) -> Result<(), Error>;
 

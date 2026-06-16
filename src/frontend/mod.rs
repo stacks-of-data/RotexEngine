@@ -2,14 +2,16 @@ mod graphics_context;
 
 pub use crate::backend::GpuBackend;
 pub use graphics_context::GraphicsContext;
-pub use rotex_types::RenderCommand;
+pub use rotex_types::RhiCommand;
 pub use rotex_types::{
-    AccessType, BufferDescriptor, BufferId, BufferUsage, BufferUsageIntent, CameraDescriptor,
-    ColorAttachmentLoad, ComputeBindingLayout, ComputePassDescriptor, ComputePipelineDescriptor,
-    ComputePipelineId, CreatedResources, DepthAttachmentLoad, DeviceDescriptor, DeviceFeatures,
-    Extent2D, IndexFormat, InstanceDescriptor, MaterialDescriptor, MaterialId, MeshDescriptor,
-    MeshId, MeshInstanceDescriptor, PassColorTarget, PassDescriptor, QueueCategory, QueueRequest,
+    AccessType, BufferDescriptor, BufferId, BufferUsage, BufferUsageIntent, BufferUsages,
+    CameraDescriptor, ColorAttachmentLoad, ComputePassDescriptor,
+    ComputePipelineDescriptor, ComputePipelineId, CreatedResources, DepthAttachmentLoad,
+    DeviceDescriptor, DeviceFeatures, Extent2D, GraphicsShaderPackage, IndexFormat,
+    InstanceDescriptor, MaterialDescriptor, MaterialId, MeshDescriptor, MeshId,
+    MeshInstanceDescriptor, PassColorTarget, PassDescriptor, QueueCategory, QueueRequest,
     ResourceBatchCreate, ResourceBatchUpdate, ResourceCreateDescriptor, ResourceHandle,
-    ResourceUpdateDescriptor, SceneDescriptor, SurfaceDescriptor, TextureDescriptor, TextureFormat,
-    TextureId, TextureReadback, VertexAttribute, VertexBufferLayout, VertexFormat,
+    ResourceUpdateDescriptor, SceneDescriptor, ShaderPackage, SurfaceDescriptor,
+    TextureDescriptor, TextureFormat, TextureId, TextureReadback, VertexAttribute,
+    VertexBufferLayout, VertexFormat, VertexStepMode, VertexStream, VertexStreamData,
 };
