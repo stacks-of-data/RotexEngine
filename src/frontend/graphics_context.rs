@@ -1,24 +1,17 @@
-// rotex_core/src/renderer.rs (Formerly graphics_context.rs)
-
+use crate::backend::GpuBackend;
 use crate::error::Error;
-use crate::bridge::BackendBridge;
 use rotex_types::{
-    CreatedResources, DeviceDescriptor, Extent2D, FrameDescriptor, InstanceDescriptor, ResourceBatchCreate,
-    ResourceBatchUpdate, SceneDescriptor, SurfaceDescriptor,
+    CreatedResources, Extent2D, ResourceBatchCreate, ResourceBatchUpdate, RhiCommand,
+    SurfaceDescriptor, TextureId, TextureReadback,
 };
 
 pub struct GraphicsContext {
-    backend: BackendBridge,
+    backend: Box<dyn GpuBackend>,
 }
 
 impl GraphicsContext {
-    pub async fn new(
-        instance_descriptor: InstanceDescriptor,
-        device_descriptor: DeviceDescriptor,
-    ) -> Result<Self, Error> {
-        Ok(Self {
-            backend: BackendBridge::new(instance_descriptor, device_descriptor).await?,
-        })
+    pub fn new(backend: Box<dyn GpuBackend>) -> Self {
+        Self { backend }
     }
 
     pub fn attach_surface(&mut self, surface_descriptor: SurfaceDescriptor) -> Result<(), Error> {
@@ -36,16 +29,16 @@ impl GraphicsContext {
         self.backend.update_resources(descriptor)
     }
 
-    pub fn render(
-        &mut self,
-        scene_descriptor: &SceneDescriptor,
-        frame_descriptor: &FrameDescriptor,
-    ) -> Result<(), Error> {
-        self.backend.render(scene_descriptor, frame_descriptor)
+    pub fn render(&mut self, commands: &[RhiCommand]) -> Result<(), Error> {
+        self.backend.execute(commands)
     }
 
     pub fn resize(&mut self, extent: Extent2D) -> Result<(), Error> {
         self.backend.resize(extent)
+    }
+
+    pub fn read_texture(&mut self, id: TextureId) -> Result<TextureReadback, Error> {
+        self.backend.read_texture(id)
     }
 
     pub fn destroy(self) {

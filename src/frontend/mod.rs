@@ -1,11 +1,17 @@
 mod graphics_context;
 
+pub use crate::backend::GpuBackend;
 pub use graphics_context::GraphicsContext;
+pub use rotex_types::RhiCommand;
 pub use rotex_types::{
-    CameraDescriptor, CreatedResources, DeviceDescriptor, DeviceFeatures, Extent2D, FrameDescriptor,
-    IndexFormat, InstanceDescriptor, MaterialDescriptor, MaterialId, MeshDescriptor, MeshId,
-    MeshInstanceDescriptor, PassDescriptor, QueueCategory, QueueRequest, ResourceBatchCreate,
-    ResourceBatchUpdate, ResourceCreateDescriptor, ResourceHandle, ResourceUpdateDescriptor,
-    SceneDescriptor, SurfaceDescriptor, TextureDescriptor, TextureFormat, TextureId, VertexAttribute,
-    VertexBufferLayout, VertexFormat,
+    AccessType, BufferDescriptor, BufferId, BufferUsage, BufferUsageIntent, BufferUsages,
+    CameraDescriptor, ColorAttachmentLoad, ComputePassDescriptor,
+    ComputePipelineDescriptor, ComputePipelineId, CreatedResources, DepthAttachmentLoad,
+    DeviceDescriptor, DeviceFeatures, Extent2D, GraphicsShaderPackage, IndexFormat,
+    InstanceDescriptor, MaterialDescriptor, MaterialId, MeshDescriptor, MeshId,
+    MeshInstanceDescriptor, PassColorTarget, PassDescriptor, QueueCategory, QueueRequest,
+    ResourceBatchCreate, ResourceBatchUpdate, ResourceCreateDescriptor, ResourceHandle,
+    ResourceUpdateDescriptor, SceneDescriptor, ShaderPackage, SurfaceDescriptor,
+    TextureDescriptor, TextureFormat, TextureId, TextureReadback, VertexAttribute,
+    VertexBufferLayout, VertexFormat, VertexStepMode, VertexStream, VertexStreamData,
 };
