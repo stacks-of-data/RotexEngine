@@ -3,37 +3,10 @@ name = "rotex-core"
 version = "0.1.2"
 edition = "2024"
 license = "MIT"
-description = "Core library for the Rotex Engine Development"
+description = "GpuBackend trait and GraphicsContext adapter interface for Rotex engine backends"
 repository = "https://github.com/rotexengine/rotex-core"
 
 [dependencies]
 thiserror = "2.0.18"
 raw-window-handle = "0.6.2"
-rotex-types = { path = "../rotex-types", version = "0.1.1" }
-
-
-[dev-dependencies]
-rfd = "0.17.2"
-png = "0.18.1"
-rotex-window = { version = "0.1.0" }
-rotex-winit = { version = "0.1.0" }
-
-[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
-ash-window = "0.13.0"
-rotex-vulkan = { version = "0.1.1" }
-
-[target.'cfg(target_arch = "wasm32")'.dev-dependencies]
-rotex-wgpu = { version = "0.1.1" }
-
-[profile.dev]
-opt-level = 1
-
-[profile.release]
-opt-level = 3
-debug = false
-lto = "fat"
-panic = "abort"
-strip = "symbols"
-
-[profile.release.package.'*']
-opt-level = 3
+rotex-types = { version = "0.1.1" }
